@@ -1,0 +1,44 @@
+<form #formProducto="ngForm" (ngSubmit)="guardar()">
+  <div class="input-group mb-3">
+    <span class="input-group-text" >ISBN</span>
+    <input type="text" id="isbn" name="isbn" #isbn="ngModel" [(ngModel)]="libro.isbn"
+    [class.is-invalid]="isbn.touched && isbn.invalid"
+     class="form-control" placeholder="ISBN" aria-label="ISBN" aria-describedby="basic-addon1" required>
+  </div>
+
+  <div class="input-group mb-3">
+    <span class="input-group-text" >Título</span>
+    <input type="text" id="titulo" name="titulo" #titulo="ngModel" [(ngModel)]="libro.titulo"
+    [class.is-invalid]="titulo.touched && titulo.invalid"
+    class="form-control" placeholder="Título" aria-label="titulo" aria-describedby="basic-addon1" required>
+  </div>
+
+  <div class="input-group mb-3">
+    <span class="input-group-text">Descripción</span>
+    <textarea id="descripcion" name="descripcion" #descripcion="ngModel" [(ngModel)]="libro.descripcion"
+    [class.is-invalid]="descripcion.touched && descripcion.invalid"
+    class="form-control" aria-label="Descripción" required></textarea>
+  </div>
+  <div class="input-group mb-3">
+    <span class="input-group-text" >Fecha de  Edición</span>
+    <input type="date" id="fechaedicion" name="fechaedicion" #fechaedicion="ngModel"
+
+    [(ngModel)]="libro.fechaedicion" class="form-control" placeholder="Fecha de Edicion" aria-label="fechaedicion" aria-describedby="basic-addon1">
+  </div>
+  <div class="input-group mb-3">
+  <!--  <button type="button" class="btn btn-primary" (click)="guardar()">Guardar</button>-->
+<input type="submit" value="Guardar">
+  </div>
+
+  <ul class="list-group">
+    <li class="list-group-item active" aria-current="true">Libros</li>
+    <li class="list-group-item" *ngFor="let item of libros; let i=index" >{{item.isbn}}
+      {{item.titulo}}
+      {{ item.descripcion}}
+      {{item.fechaedicion | date:'dd-MM-yyyy'}}
+      <button type="button" class="btn btn-danger" (click)="borrar(i)">Eliminar</button>
+      <button type="button" class="btn btn-primary" (click)="modificar(i)">Modificar</button>
+    </li>
+
+  </ul>
+</form>
