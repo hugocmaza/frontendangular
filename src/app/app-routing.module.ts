@@ -6,6 +6,7 @@ import { FproductoComponent } from './components/fproducto/fproducto.component';
 import { ProductoComponent } from './components/producto/producto.component';
 import { ProductosComponent} from './components/productos/productos.component';
 import { CommentsComponent } from './pages/comments/comments.component';
+import { RestaurantesComponent } from './pages/restaurantes/restaurantes.component';
 
 const routes: Routes = [
   { path: 'productos', component: ProductosComponent },
@@ -15,6 +16,12 @@ const routes: Routes = [
     path: 'comments',
     // loadChildren: './pages/comments/comments.module#CommentsModule'
     loadChildren: () => import('./pages/comments/comments.module').then(m => m.CommentsModule)
+   // component: CommentsComponent
+  },
+  {
+    path: 'restaurantes',
+    // loadChildren: './pages/comments/comments.module#CommentsModule'
+    loadChildren: () => import('./pages/restaurantes/restaurantes.module').then(m => m.RestaurantesModule)
    // component: CommentsComponent
   },
   {
