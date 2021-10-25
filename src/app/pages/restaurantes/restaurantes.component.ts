@@ -13,21 +13,26 @@ export class RestaurantesComponent implements OnInit {
 
   mensajes: any = [];
   // mensajes: MensajeDTO[] = [];
-  restaurante: Irestaurantes = {id:13,nombre:"z",direccion:"z",descripcion:"c",imagen:"c",precio:"c",
-                              categoria:"c",url:"c"};
+  restaurante: Irestaurantes = {id:0,nombre:"Ypf",direccion:"Chilecito",descripcion:"",imagen:"",precio:"",
+                              categoria:"",url:""};
 
   constructor(private dataService: SrestaurantesService, private httpclient: HttpClient) {
   }
 
   ngOnInit(): void {
     // DE MANERA TRADICIONAL
-    this.dataService.getRestaurantes().subscribe((data: any) => {
-
-      console.log(data.data);
-      this.mensajes = data.data;
+    //this.dataService.getRestaurantes().subscribe((data: any) => {
+      this.httpclient.get('http://localhost:8080/restaurantes').subscribe((datos: any) => {
+      console.log(datos.data);
+      this.mensajes = datos.data;
       // console.log(response.data);
       // this.mensajes = response.data;
     });
+ /*   this.addRestaurante(this.restaurante)
+      .subscribe(data => {
+        console.log(data);
+
+      });
 
     this.modRestaurante(this.restaurante)
       .subscribe(data => {
@@ -35,22 +40,22 @@ export class RestaurantesComponent implements OnInit {
 
       });
 
-      this.deleteRestaurante(18)
+      this.deleteRestaurante(19)
       .subscribe(data => {
         console.log(data);
 
       })
 
-
+*/
   }
 
   baseURL: string = "http://localhost:8080/restaurantes";
 
 
-  getRestaurantes2(): Observable<Irestaurantes[]> {
+ /* getRestaurantes2(): Observable<Irestaurantes[]> {
     console.log('getresto '+this.baseURL + 'resto')
     return this.httpclient.get<Irestaurantes[]>(this.baseURL)
-  }
+  }*/
 
   addRestaurante(restaurante:Irestaurantes): Observable<any> {
     const headers = { 'content-type': 'application/json'}

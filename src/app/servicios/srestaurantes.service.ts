@@ -11,5 +11,6 @@ export class SrestaurantesService {
   getRestaurantes() {
     return this.httpclient.get('http://localhost:8080/restaurantes');
 
+
   }
 }
